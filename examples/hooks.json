@@ -1,0 +1,43 @@
+{
+  "description": "Track Flow workflow receipts in this project. Copy to <project>/.codex/hooks.json and trust it with /hooks.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^(Bash|apply_patch)$",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 9,
+            "commandWindows": "python \"C:/path/to/flow-video-generator/scripts/flow_tool.py\" hook",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/path/to/flow-video-generator/scripts/flow_tool.py\" hook"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "^Bash$",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 9,
+            "commandWindows": "python \"C:/path/to/flow-video-generator/scripts/flow_tool.py\" hook",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/path/to/flow-video-generator/scripts/flow_tool.py\" hook"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 9,
+            "commandWindows": "python \"C:/path/to/flow-video-generator/scripts/flow_tool.py\" hook",
+            "command": "python3 \"$(git rev-parse --show-toplevel)/path/to/flow-video-generator/scripts/flow_tool.py\" hook"
+          }
+        ]
+      }
+    ]
+  }
+}
